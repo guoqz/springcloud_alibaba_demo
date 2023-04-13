@@ -1,0 +1,32 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: springcloud-minio
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/spring_cloud_db?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: root
+    druid:
+      initial-size: 1
+      max-active: 10
+      min-idle: 2
+      max-wait: 30000
+
+
+# minio 文件存储配置信息
+minio:
+  endpoint: http://192.168.100.10:9000      # MinIO服务地址
+  fileHost: http://192.168.100.10:9000      # 文件地址host
+  bucketName: files                         # 存储桶bucket名称
+  accessKey: minioadmin
+  secretKey: minioadmin
+  imgSize: 1024                           # 图片大小限制，单位：m
+  fileSize: 1024                          # 文件大小限制，单位：m

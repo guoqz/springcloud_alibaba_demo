@@ -1,0 +1,30 @@
+server:
+  port: 8200
+
+spring:
+  application:
+    name: rabbitmq-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/spring_cloud_db?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: root
+    druid:
+      initial-size: 1
+      max-active: 10
+      min-idle: 2
+      max-wait: 30000
+
+  #配置rabbitMq 服务器
+  rabbitmq:
+    host: 192.168.100.10
+    port: 5672
+    username: skcx
+    password: skcx
+    #虚拟host 可以不设置,使用server默认host
+    virtual-host: /

@@ -1,0 +1,35 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: springcloud-gateway
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/spring_cloud_db?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: root
+    druid:
+      initial-size: 1
+      max-active: 10
+      min-idle: 2
+      max-wait: 30000
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+    gateway:
+      enabled: true
+      routes:
+        - id: goods
+          uri: lb://springcloud-goods
+          predicates:
+            - Path=/goods/**
+        - id: order
+          uri: lb://springcloud-order
+          predicates:
+            - Path=/order/**
+
